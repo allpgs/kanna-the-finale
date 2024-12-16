@@ -6,6 +6,7 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import ReactPlayer from "react-player/lazy";
 // import ReactPlayer from "react-player/youtube";
 
+import formatUrl from "@/modules/cdn/formatUrl";
 import styles from "./styles.module.css";
 
 export default function Page3() {
@@ -21,10 +22,15 @@ export default function Page3() {
       <div className={styles.video}>
         {hasWindow && (
           <ReactPlayer
-            url="https://youtu.be/eNbB4MWbZAI"
+            //YT: url="https://youtu.be/eNbB4MWbZAI"
+            url={formatUrl("/videos/pv.mp4")}
+            // YT: light="https://i.ytimg.com/vi/eNbB4MWbZAI/maxresdefault.jpg"
+            light={formatUrl("/images/og-image.png")}
             width="100%"
             height="100%"
-            light="https://i.ytimg.com/vi/eNbB4MWbZAI/maxresdefault.jpg"
+            // YT: Remove controls
+            controls
+            playsinline
             onClick={() => sendGTMEvent({ event: "playPv" })}
           />
         )}
